@@ -6,3 +6,4 @@ FPS = 60
 
 # Настройка графики
 WIDTH_LINE = 5
+DEFAULT_FONT = "resources/fonts/Silkscreen-Regular.ttf"

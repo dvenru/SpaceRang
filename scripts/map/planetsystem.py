@@ -1,11 +1,9 @@
 import pygame as pg
 from random import randint
 
-from src.settings import *
-
 
 class PlanetSystem:
-    def __init__(self, surface, system_type: str, system_name: str, planet_count: int, position: tuple = (int, int), set_id: str = None):
+    def __init__(self, surface: pg.Surface, system_type: str, system_name: str, planet_count: int, position: tuple = (int, int), set_id: str = None):
         self.surface = surface
         self.id = f"PS{str(randint(100, 1000))}" if set_id is None else set_id
         self.name = system_name
@@ -26,5 +24,5 @@ class PlanetSystem:
     def get_connect(self) -> dict:
         return self.connects
 
-    def draw(self):
+    def draw(self) -> None:
         pg.draw.circle(self.surface, 'white', self.position, 20)
