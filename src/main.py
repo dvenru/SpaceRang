@@ -3,8 +3,9 @@ import pygame as pg
 
 from settings import *
 from src.map.galaxy import Galaxy
-from src.map.planet_system import PlanetSystem
+from src.map.planetsystem import PlanetSystem
 from src.map.connect import Connect
+from datacontrol import DataControl
 
 
 class Game:
@@ -18,6 +19,7 @@ class Game:
 
         self.clock = pg.time.Clock()
 
+        self.data_control = DataControl()
         self.galaxy = Galaxy(self.main_surface)
 
         unix_1 = PlanetSystem(self.main_surface, "normal", "test", 0, (100, 100), "unix_1")
@@ -43,7 +45,7 @@ class Game:
 
             # Обработка событий
             for event in pg.event.get():
-                if event.type == pg.QUIT:
+                if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                     pg.quit()
                     exit()
 

@@ -1,6 +1,6 @@
 import pygame as pg
 
-from src.map.planet_system import PlanetSystem
+from src.map.planetsystem import PlanetSystem
 from src.map.connect import Connect
 
 
@@ -20,6 +20,12 @@ class Galaxy:
     def add_connect(self, new_connects: list):
         for new_connect in new_connects:
             self.connects[new_connect.connect_id] = new_connect
+
+    def search_system(self, system_id: str):
+        try:
+            return self.systems[system_id].name
+        except KeyError:
+            print("Такой системы не существует")
 
     def draw(self):
         for connect in self.connects.values():

@@ -12,18 +12,18 @@ class PlanetSystem:
         self.type = system_type
         self.planet_count = planet_count
         self.position = position
-        self.connects = []
+        self.connects = {}
 
-    def add_connect(self, system_id: str) -> None:
-        self.connects.append(system_id)
+    def set_connect(self, system_id: str, is_open: bool) -> None:
+        self.connects[system_id] = is_open
 
     def del_connect(self, system_id: str = None) -> None:
         if system_id is None:
-            self.connects = []
+            self.connects = {}
         else:
-            self.connects.remove(system_id)
+            self.connects.pop(system_id, 'Empty')
 
-    def get_connect(self) -> list:
+    def get_connect(self) -> dict:
         return self.connects
 
     def draw(self):
