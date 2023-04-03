@@ -1,6 +1,7 @@
 import pygame as pg
 
 from settings import *
+from datacontrol import DataControl
 
 
 class Label:
@@ -11,7 +12,7 @@ class Label:
         self.color = color
         self.position = position
 
-        self.font = pg.font.Font(DEFAULT_FONT, size)
+        self.font = pg.font.Font(DataControl().load_font(), size)
         self.render_text = self.font.render(text, False, color)
 
     def draw(self) -> None:

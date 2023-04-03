@@ -14,18 +14,23 @@ from scripts.UI.cursorlabel import CursorLabel
 class Game:
 
     def __init__(self):
+        # получение настроек
+        setting = DataControl().load_setting()
+
         # инициализация PyGame
         pg.init()
 
-        self.main_surface = pg.display.set_mode((WIDTH, HEIGHT))
+        self.main_surface = pg.display.set_mode((int(setting["WIDTH"]), int(setting["HEIGHT"])))
         pg.display.set_caption("SpaceRang")
         # pg.display.set_icon()
 
         self.clock = pg.time.Clock()
+        self.fps = int(setting["FPS"])
+
         # инициализация игровых элементов
         self.galaxy = Galaxy(self.main_surface)
 
-        # инициализация интерефейса
+        # инициализация интерфейса
         self.fps_label = Label(self.main_surface, (10, 10))
         self.cursor_label = CursorLabel(self.main_surface, color=(0, 0, 0))
 
@@ -65,7 +70,7 @@ class Game:
             pg.display.flip()
 
             # Задаем количество кадров в секунду
-            self.clock.tick(FPS)
+            self.clock.tick(self.fps)
 
 
 if __name__ == "__main__":
